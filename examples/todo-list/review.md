@@ -1,34 +1,33 @@
-# Review: Todo List Component
+# Review: Todo State Module
 
-## Verdict: PASS
+## Verdict
 
-## Task-by-Task Check
+PASS
 
-| Task | Status | Notes |
-|------|--------|-------|
-| TodoList.tsx | PASS | Proper state management, input + list rendering |
-| TodoItem.tsx | PASS | Toggle and delete work, strikethrough applied |
-| useTodos.ts | PASS | All operations functional, empty state handled |
-| TodoList.css | PASS | Clean layout, responsive, strikethrough works |
+## Acceptance criteria
 
-## Issues Found
+- `createTodoState` returns an empty state, proven by the add test's unchanged input assertion.
+- `addTodo` trims valid text and rejects blank text, proven by two tests.
+- `toggleTodo` changes only the matching item, proven by the toggle test.
+- `deleteTodo` removes only the matching item, proven by the delete test.
+- The operations return new state instead of changing the input, proven by deep comparisons against the original values.
 
-- **Nitpick**: Could add aria-labels for accessibility (delete button, checkbox)
-- **Nitpick**: Could add `type="button"` to delete button to prevent form submission if wrapped in form
+## Issues
 
-## Assumptions Review
+No critical, warning, or nitpick findings.
 
-All assumptions reasonable:
-- Inline SVG is smart for zero dependencies
-- Enter key support is standard UX
-- UUID fallback is defensive coding
+## Verification
 
-## Recommended Next Steps
+```bash
+node --test examples/todo-list/tests/todos.test.mjs
+```
 
-1. Add aria-labels if accessibility matters for your use case
-2. Consider localStorage persistence for next iteration
-3. Add tests if this goes to production
+Result: exit code 0, four tests passed, zero failed.
 
----
+## Diff scope
 
-**Bottom line**: Ship it. The code works, follows the plan, and the nitpicks are optional.
+Expected example source, tests, and handoff documents are present. No credential, environment, build-output, or unrelated files are part of the example.
+
+## Next action
+
+Review the repository-level diff before any commit.

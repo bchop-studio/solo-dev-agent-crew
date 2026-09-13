@@ -1,43 +1,40 @@
-# Plan: Todo List Component
+# Plan: Todo State Module
 
 ## Goal
-Build a functional todo list with add, complete, and delete operations using React hooks.
+
+Add a dependency-free todo state module with tested add, complete, and delete behavior.
+
+## Current state
+
+The example folder contains handoff documents but no runnable source or tests.
 
 ## Tasks
 
-1. **Create `src/components/TodoList.tsx`**
-   - Main component with input field and list rendering
-   - State management with useState
-   - Acceptance: Renders input + list of todos
-
-2. **Create `src/components/TodoItem.tsx`**
-   - Individual todo item with complete toggle and delete button
-   - Visual strikethrough for completed items
-   - Acceptance: Can toggle complete and delete
-
-3. **Create `src/hooks/useTodos.ts`**
-   - Custom hook for todo state logic
-   - Functions: addTodo, toggleTodo, deleteTodo
-   - Acceptance: All operations work, handles empty state
-
-4. **Create `src/components/TodoList.css`**
-   - Basic flex layout
-   - Strikethrough for completed items
-   - Acceptance: Looks decent, responsive
+1. Create `src/todos.mjs` with `createTodoState`, `addTodo`, `toggleTodo`, and `deleteTodo` exports.
+   Acceptance: each operation returns the expected state without changing the input array.
+2. Create `tests/todos.test.mjs` with one test for each behavior and an empty-input check.
+   Acceptance: the tests fail before the source exists and pass after implementation.
+3. Update the example handoff files with the commands and results from the real run.
+   Acceptance: every PASS claim points to included source and test evidence.
 
 ## Constraints
-- Use React useState and useCallback hooks only
-- No external state management libraries
-- Must handle empty state gracefully
-- No backend/storage needed
+
+- Use Node's built-in test runner.
+- Add no runtime or development dependencies.
+- Keep the example independent from a browser or framework.
+- Do not commit, push, open a pull request, merge, or deploy without approval.
 
 ## Risks
-- Hook complexity could grow — keep it simple
-- Styling might clash with existing app — use scoped CSS
 
-## Success Criteria
-- Can add todos via input + Enter
-- Can mark complete (visual strikethrough)
-- Can delete todos
-- Empty state shows friendly message
-- No console errors
+- Blank todo text could create unusable entries, so reject it.
+- State mutation could make UI updates unpredictable, so return new arrays and objects.
+
+## Verification
+
+```bash
+node --test examples/todo-list/tests/todos.test.mjs
+```
+
+## Success criteria
+
+The command exits with code 0 and reports four passing tests covering add, blank input, toggle, and delete.

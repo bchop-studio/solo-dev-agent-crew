@@ -1,23 +1,41 @@
-# Build Log: Todo List Component
+# Build Log: Todo State Module
 
-## Completed
+## Status
 
-- `src/components/TodoList.tsx` — Main component with input field, list rendering, and state management via useState
-- `src/components/TodoItem.tsx` — Individual todo item with toggle checkbox and delete button, strikethrough styling for completed
-- `src/hooks/useTodos.ts` — Custom hook with addTodo, toggleTodo, deleteTodo functions, empty state handling
-- `src/components/TodoList.css` — Flex layout, basic styling, strikethrough for completed items
+READY_FOR_REVIEW
 
-## Assumptions Made
+## Files changed
 
-- Used inline SVG for delete icon to avoid external dependencies
-- Added Enter key support for adding todos (not explicitly requested but standard UX)
-- Used `crypto.randomUUID()` for todo IDs (fallback to Date.now() if unsupported)
-- Empty state message: "No todos yet. Add one above!"
+- `src/todos.mjs`, added immutable todo state operations.
+- `tests/todos.test.mjs`, added behavior and input-validation tests.
+- `plan.md`, `build-log.md`, and `review.md`, replaced unsupported claims with reproducible evidence.
 
-## Issues Found
+## Assumptions
 
-- None
+- A small state module shows the workflow without requiring a framework install.
+- Rejecting blank text is safer than silently adding an empty item.
+
+## Verification
+
+The first test run failed with `ERR_MODULE_NOT_FOUND` because `src/todos.mjs` did not exist. That was the expected failing test before implementation.
+
+After implementation:
+
+```bash
+node --test examples/todo-list/tests/todos.test.mjs
+```
+
+Result: exit code 0, four tests passed, zero failed.
+
+## Failures and fixes
+
+- Expected failure: the source module was missing.
+- Fix: added the smallest implementation required by the four tests.
 
 ## Skipped
 
-- Nothing
+- No browser UI was added. This example proves the state behavior only.
+
+## Remaining approval-gated actions
+
+Commit, push, pull request, merge, and deployment were not performed.
