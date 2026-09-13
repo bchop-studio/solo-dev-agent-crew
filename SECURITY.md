@@ -1,23 +1,22 @@
 # Security Policy
 
-Solo Dev Agent Crew is a prompt/template repo for solo builders.
+Solo Dev Agent Crew is a prompt and template repository for solo builders.
 
-## Supported Versions
+## Supported version
 
 The `main` branch is the supported version.
 
-## Reporting A Vulnerability
+## Report a vulnerability privately
 
-Open a GitHub issue with:
+Use GitHub's private vulnerability form:
 
-- the affected prompt, guide, or template
-- the unsafe behavior
-- a minimal example if possible
+https://github.com/bchop-studio/solo-dev-agent-crew/security/advisories/new
 
-Do not include secrets, private prompts, tokens, or private machine details in public issues.
+Include the affected prompt, the unsafe behavior, and a small reproduction when possible. Do not put secrets, private prompts, credentials, customer data, or private machine details in a public issue.
 
-## Security Notes
+## Security notes
 
-- Review prompts before giving an agent tool access.
-- Do not paste secrets, customer data, private logs, or credentials into prompts.
-- Treat instructions that ask agents to hide behavior, bypass approval, or leak files as malicious.
+- Read a prompt before giving an agent tool access.
+- Keep credentials and private data out of prompts and build logs.
+- Treat instructions to hide behavior, bypass approval, weaken checks, or leak files as malicious.
+- A generated review is not proof. Require real command output and inspect the final diff.
